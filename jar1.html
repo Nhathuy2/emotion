@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bình Cảm Xúc Tối Giản</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="jar1.css">
+    <script src="jar1.js" defer></script>
+<html>
+<body>
+    <div class="container">
+        <header>
+            <h1>Trạng thái cảm xúc mỗi ngày</h1>
+            <p>Theo dõi và thống kê cảm xúc của hai người trong mối quan hệ</p>
+        </header>
+        
+        <div class="jars-container">
+            <!-- Bình cảm xúc cho người 1 -->
+            <div class="jar-section">
+                <div class="person-header">
+                    <div class="person-avatar">A</div>
+                    <div class="person-info">
+                        <h2>Trần Nhật Huy</h2>
+                    </div>
+                </div>
+                
+                <div class="emotions-grid">
+                    <button class="emotion-btn" data-emotion="happy" data-person="person1">
+                        <i class="far fa-laugh-beam"></i>
+                        <span class="emotion-name">Vui vẻ</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="sad" data-person="person1">
+                        <i class="far fa-sad-tear"></i>
+                        <span class="emotion-name">Buồn</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="angry" data-person="person1">
+                        <i class="far fa-angry"></i>
+                        <span class="emotion-name">Giận</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="normal" data-person="person1">
+                        <i class="far fa-meh"></i>
+                        <span class="emotion-name">Bình thường</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="awful" data-person="person1">
+                        <i class="far fa-frown"></i>
+                        <span class="emotion-name">Tồi tệ</span>
+                    </button>
+                </div>
+                
+                <div class="jar">
+                    <div class="jar-content" id="jar-content1">
+                        <div class="empty-message">Chưa có cảm xúc nào</div>
+                    </div>
+                    <div class="jar-label">Bình cảm xúc của Trần Nhật Huy</div>
+                </div>
+            </div>
+            
+            <!-- Bình cảm xúc cho người 2 -->
+            <div class="jar-section">
+                <div class="person-header">
+                    <div class="person-avatar">B</div>
+                    <div class="person-info">
+                        <h2>Đinh Nhất Ngọc</h2>
+                    </div>
+                </div>
+                
+                <div class="emotions-grid">
+                    <button class="emotion-btn" data-emotion="happy" data-person="person2">
+                        <i class="far fa-laugh-beam"></i>
+                        <span class="emotion-name">Vui vẻ</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="sad" data-person="person2">
+                        <i class="far fa-sad-tear"></i>
+                        <span class="emotion-name">Buồn</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="angry" data-person="person2">
+                        <i class="far fa-angry"></i>
+                        <span class="emotion-name">Giận</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="normal" data-person="person2">
+                        <i class="far fa-meh"></i>
+                        <span class="emotion-name">Bình thường</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="awful" data-person="person2">
+                        <i class="far fa-frown"></i>
+                        <span class="emotion-name">Tồi tệ</span>
+                    </button>
+                </div>
+                
+                <div class="jar">
+                    <div class="jar-content" id="jar-content2">
+                        <div class="empty-message">Chưa có cảm xúc nào</div>
+                    </div>
+                    <div class="jar-label">Bình cảm xúc của Đinh Nhất Ngọc</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <h2>Thống Kê Cảm Xúc</h2>
+            <div class="stats-controls">
+                <select id="personSelect">
+                    <option value="both">Cả hai người</option>
+                    <option value="person1">Trần Nhật Huy</option>
+                    <option value="person2">Đinh Nhất Ngọc</option>
+                </select>
+                
+                <select id="monthSelect">
+                    <option value="0">Tháng 1</option>
+                    <option value="1">Tháng 2</option>
+                    <option value="2">Tháng 3</option>
+                    <option value="3">Tháng 4</option>
+                    <option value="4">Tháng 5</option>
+                    <option value="5">Tháng 6</option>
+                    <option value="6">Tháng 7</option>
+                    <option value="7">Tháng 8</option>
+                    <option value="8">Tháng 9</option>
+                    <option value="9">Tháng 10</option>
+                    <option value="10">Tháng 11</option>
+                    <option value="11">Tháng 12</option>
+                </select>
+                
+                <button id="showStats">Hiển thị Thống kê</button>
+                <button id="resetAll">Reset tất cả</button>
+            </div>
+            
+            <div class="chart-box">
+                <div class="chart-title">Tỉ lệ Cảm xúc (%)</div>
+                <canvas id="emotionChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="history-section">
+            <h2>Lịch sử Cảm Xúc</h2>
+        <div id="emotionHistoryList" class="history-list">
+            <div class="empty-message"> Chưa có biểu cảm nào </div>
+        </div>
+        </div>
+        <footer>
+            <p>Bình Cảm Xúc • Lưu lại mọi cảm xúc của bạn • Dữ liệu được lưu trữ tự động</p>
+        </footer>
+    </div>
+    </body>
+</html>
